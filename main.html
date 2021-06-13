@@ -1,0 +1,294 @@
+<!DOCTYPE html> 
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Mali&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@900&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>  
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #E0FBFC;
+        }
+
+        .space, tr, td {
+			border-collapse: collapse;
+			table-layout: fixed;
+			text-align: center;
+            font-family: Catamaran;
+            transition: 1s; 
+            color: rgba(61, 90, 128, 0.9);
+        }
+
+        #result {
+            font-family: Catamaran;
+            text-align: center;
+            font-size: 72px;
+            color: #E0FBFC;
+        }
+        
+        #heading {
+            font-family: "Balsamiq Sans";
+            width: 100%;
+            color: #293241;
+            letter-spacing: 1px;
+        }
+
+        #leftcol {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .tb {
+            padding: 25px 30px;
+            background-color: rgba(61, 90, 128, 0.9);
+            box-shadow: 2px 2px 12px -1px rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            position: relative;
+        }            
+        
+        #rightcol h1 {
+            font-family: sans-serif;
+        }
+
+        .c1 {
+            color: #FFE19C;
+            text-shadow: 2px -1px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .c2 {
+            color: #ffa089;
+            text-shadow: 2px -1px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        #a, #b, #c, #d, #f, #e {
+            border-bottom : 8px solid rgba(152, 193, 217, 0.9);
+        }
+
+        #a, #b, #d, #g, #h, #e {
+            border-right: 8px solid rgba(152, 193, 217, 0.9);
+        }
+
+        #b, #c, #f, #h, #i, #e {
+            border-left: 8px solid rgba(152, 193, 217, 0.9);
+        }
+
+        #d, #f, #g, #h, #i, #e {
+            border-top: 8px solid rgba(152, 193, 217, 0.9);
+        }
+
+        #rightcol h1 {
+            padding: 15px;
+            width: 50%;
+            float: left;
+            text-align: center;
+        }
+
+        #postMenu, #modalcontent, #modalcontent2, #pause {
+            display: none;
+            
+        }
+
+        #postMenu h1, #pause h1 {
+            width: 100%;
+
+        }
+
+        #resultMenu {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            background-color: rgba(240, 240, 240, 0.2);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.5s 1s;
+        }
+
+        .space {
+            z-index: 2;
+        }
+        
+        * {
+            box-sizing: border-box;
+            text-shadow: 2px -1px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        [class*="col-"] {
+            float: left;
+            padding: 20px;
+            width: 100%;
+        }
+
+        @media only screen and (min-width: 200px) {
+
+            #rightcol h1 {
+                font-size: clamp(28px, 5vw, 32px);
+            }
+            
+            .space, tr, td {
+                width: 70px;
+                height: 70px;
+                font-size: 40px;
+            }
+        }
+        
+        @media only screen and (min-width: 360px) {
+            
+            .space, tr, td {
+                width: 90px;
+                height: 90px;
+                font-size: 45px;
+            }
+        }
+        
+        @media only screen and (min-width: 768px) {
+            /* For tablets: */
+            .col-s-2 {width:16.6666667%;}
+            .col-s-3 {width:25%;}
+            .col-s-4 {width:33.33333333%;}
+            .col-s-6 {width:50%;}
+            .col-s-8 {width:66.66666667%;}
+            .col-s-9 {width:75%;}
+            .col-s-10 {width:83.333333%;}
+            .col-s-12 {width:100%;}
+            
+            .row {
+                width: 70%;
+            } 
+
+            #heading {
+                font-size: 50px;
+                width: 100%;
+            }
+            
+            #rightcol h1 {
+                font-size: 36px;   
+            }
+            
+            .space, tr, td {
+                width: 100px;
+                height:100px;
+                font-size: 55px;
+            }
+        }
+
+        @media only screen and (min-width: 1000px) {
+            /* For desktop: */
+            .col-2 {width:16.6666667%;}
+            .col-3 {width:25%;}
+            .col-4 {width:33.33333333%;}
+            .col-6 {width:50%;}
+            .col-8 {width:66.66666667%;}
+            .col-9 {width:75%;}
+            .col-10 {width: 83.333333%;}
+            .col-12 {width:100%;}
+            
+            .row {
+                width: 55%;
+            } 
+            
+            #rightcol h1 {
+                font-size: 40px;  
+            }
+            
+            .space, tr, td {
+                width: 110px;
+                height:110px;
+                font-size: 60px;
+            }
+
+            #heading {
+                font-size: 60px;
+            }
+            
+        }
+        
+        * {
+            /* transition: .5s; */
+        }
+		
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="heading" align="center">TIC TAC TOE</h1>
+        <div class="row">
+            <div class="col-12 col-s-12" id="leftcol">
+                <div class="tb">
+                    <table class="space" align=center>
+                        <tr>
+                            <td id="a"></td>
+                            <td id="b"></td>
+                            <td id="c"></td>
+                        </tr>
+                        <tr>
+                            <td id="d"></td>
+                            <td id="e"></td>
+                            <td id="f"></td> 
+                        </tr>
+                        <tr>
+                            <td id="g"></td>
+                            <td id="h"></td>
+                            <td id="i"></td>
+                        </tr>
+                    </table>
+                    <div id="resultMenu">
+                        <h1 id="result"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-s-12" id="rightcol">
+                <div id="postMenu">
+                    <h1 id="again" onclick ="Newgame()"></h1>
+                </div>  
+                <div id="modalcontent">
+                    <h1 id="twoplayer" onclick="Start(this.id, null)">2 PLAYER</h1>
+                    <h1 id="oneplayer" onclick="ShowContent2()">1 PLAYER </h1> 
+                </div>
+                <div id="modalcontent2">
+                    <h1 id="pc" class="oneplayer" onclick="Start(this.className, this.id)">AI FIRST</h1>
+                    <h1 id="human" class="oneplayer" onclick="Start(this.className, this.id)">HUMAN FIRST</h1> 
+                </div>
+                <div id="pause">
+                    <h1 onclick="stopGame()">Stop</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script defer src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
