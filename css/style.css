@@ -23,9 +23,17 @@ label, button, p, i {
     font-size: 1.5em;
 }
 
+.occupied:hover {
+    cursor: default;
+}
+
 #restart {
     background-color: transparent;
     border: none;
+}
+
+#restart:hover {
+    cursor: pointer;
 }
 
 .container {

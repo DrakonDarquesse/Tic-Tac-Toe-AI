@@ -25,7 +25,9 @@ function createUIBoard() {
                 if (gameOver) { return; }
                 const index = Board.GRID * i + j;
                 const move = board.getCurrentPlayer().getLegalMoves().find(move => move.getIndex() === index);
+                if (move === undefined || move === null) { return; }
                 td.innerHTML = League.ToString(board.getCurrentPlayer().getLeague());
+                td.className = 'occupied';
                 board = board.getCurrentPlayer().makeMove(move);
                 msg.innerHTML = 'Game running...';
                 currentPlayerIsAI() ? aiMakeMove() : checkEndGame();
@@ -42,6 +44,7 @@ function aiMakeMove() {
     msg.innerHTML = 'AI thinking...';
     const move = new Minimax().makeMove(board);
     tdArr[move.getIndex()].innerHTML = League.ToString(board.getCurrentPlayer().getLeague());
+    tdArr[move.getIndex()].className = 'occupied';
     board = move.execute(board);
     msg.innerHTML = 'Game running...';
     currentPlayerIsAI() ? aiMakeMove() : checkEndGame();
@@ -65,6 +68,7 @@ function restartGame() {
             board = Board.createStandardBoard();
             for (let i = 0; i < tdArr.length; i++) {
                 tdArr[i].innerHTML = '';
+                tdArr[i].className = '';
             }
             msg.innerHTML = 'Game started...';
         }
@@ -91,14 +95,32 @@ function checkBoxAddListener() {
 
 const toggleSun = document.getElementById('toggle-sun');
 const toggleMoon = document.getElementById('toggle-moon');
+const classList = document.body.classList;
+const THEME_KEY = 'THEME_KEY';
 
-toggle(toggleSun, toggleMoon);
-toggle(toggleMoon, toggleSun);
+toggle(toggleSun, toggleMoon, true);
+toggle(toggleMoon, toggleSun, false);
+chooseThemeBasedOnStorage();
 
-function toggle (toggleNow, toggleLater) {
+function chooseThemeBasedOnStorage() {
+    if (JSON.parse(localStorage.getItem(THEME_KEY)) === true) {
+        classList.toggle('light-theme');
+        toggleSun.style.color = 'transparent';
+        toggleMoon.style.color = 'var(--secondary-color)';
+    } else {
+        toggleMoon.style.color = 'transparent';
+        toggleSun.style.color = 'var(--secondary-color)';
+    }
+}
+
+function toggle (toggleNow, toggleLater, isLight) {
     toggleNow.addEventListener('click', () => {
+        const dark = !JSON.parse(localStorage.getItem(THEME_KEY)) === true && !isLight;
+        const light = JSON.parse(localStorage.getItem(THEME_KEY)) === true && isLight
+        if (light || dark) { return; }
         toggleNow.style.color = 'transparent';
         toggleLater.style.color = 'var(--secondary-color)';
-        document.body.classList.toggle('light-theme');
+        classList.toggle('light-theme');
+        localStorage.setItem(THEME_KEY, isLight);
     });
 }
