@@ -20,6 +20,7 @@ const __dirname = path.dirname(__filename);
 
   
   app.use('/js', express.static(path.join(__dirname, './js')))
+  app.use('/css', express.static(path.join(__dirname, './css')))
   app.use('/tictactoe', express.static(path.join(__dirname, './main.html')))
   
 

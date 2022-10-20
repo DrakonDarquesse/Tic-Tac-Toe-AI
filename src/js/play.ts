@@ -36,8 +36,8 @@ const resultGenerator = (result:boolean) => {
     const resultText = result? (game.playerBool ? 'O WINS' : 'X WINS') : 'DRAW'
     const resultElement = document.createElement('h1') 
     resultElement.innerText = resultText
+    document.getElementById('buttonContainer').append(resultElement);
     restartBtn().append()
-    document.getElementById('resultContainer').append(resultElement);
 }
 
 function bindInterface() {

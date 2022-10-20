@@ -1,0 +1,247 @@
+:root {
+    --backgroud-color: hsl(215, 100%, 96%);
+    --hover-color: hsl(215, 100%, 96%);
+    --line-color: hsl(218, 23%, 21%);
+    --font-color: hsl(218, 23%, 21%);
+    --primary-color: hsl(214, 90%, 70%);
+    --secondary-color: hsl(9, 90%, 80%);
+}
+
+[data-theme="dark_mode"] {
+    --backgroud-color: hsl(218, 23%, 21%);
+    --hover-color: hsl(9, 90%, 80%);
+    --line-color: hsl(218, 23%, 50%);
+    --secondary-color: hsl(215, 100%, 96%);
+}
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--backgroud-color);
+}
+
+.container {
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    position: relative;
+    border: var(--line-color) solid 4px;
+}
+
+.space,
+tr,
+td {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+#heading {
+    font-family: "Balsamiq Sans";
+    width: 100%;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    font-size: clamp(40px, 5vw, 50px);
+}
+
+.boardContainer {
+    display: flex;
+}
+
+.tb {
+    width: fit-content;
+    padding: 25px 30px;
+}
+
+#a,
+#b,
+#c,
+#d,
+#f,
+#e {
+    border-bottom: 5px solid var(--line-color);
+}
+
+#a,
+#b,
+#d,
+#g,
+#h,
+#e {
+    border-right: 5px solid var(--line-color);
+}
+
+#b,
+#c,
+#f,
+#h,
+#i,
+#e {
+    border-left: 5px solid var(--line-color);
+}
+
+#d,
+#f,
+#g,
+#h,
+#i,
+#e {
+    border-top: 5px solid var(--line-color);
+}
+
+input {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-family: Catamaran;
+    color: var(--primary-color);
+    background-color: var(--backgroud-color);
+    font-size: clamp(40px, 6vw, 60px);
+}
+
+.col {
+    display: flex;
+    flex-flow: column;
+}
+
+#buttonContainer {
+    padding: 40px 20px;
+    gap: 16px;
+}
+
+#buttonContainer h1 {
+    margin: 0;
+    text-align: center;
+    color: var(--secondary-color);
+
+}
+
+button {
+    border: 0;
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    padding: 10px;
+    border-radius: 10px;
+    min-width: fit-content;
+    max-width: 360px;
+    flex: 1;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Teko', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    color: var(--hover-color);
+}
+
+.sideContainer {
+    position: absolute;
+    right: -52px;
+    top: 0;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    height: 100%;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 700,
+        'GRAD' 0,
+        'opsz' 48;
+    font-size: 36px;
+}
+
+.vertical-text {
+    writing-mode: vertical-lr;
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.sideContainer * {
+    color: var(--line-color);
+    text-align: center;
+    cursor: pointer;
+}
+
+.sideContainer *:hover {
+    color: var(--secondary-color);
+}
+
+* {
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+@media only screen and (min-width: 200px) {
+
+    .container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .space,
+    tr,
+    td {
+        width: 70px;
+        height: 70px;
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 360px) {
+
+    .space,
+    tr,
+    td {
+        width: 90px;
+        height: 90px;
+        font-size: 45px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+
+    .container {
+        width: 60%;
+        height: 85%;
+    }
+
+    .space,
+    tr,
+    td {
+        width: 100px;
+        height: 100px;
+        font-size: 55px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    .container {
+        width: 50%;
+        height: 85%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .container {
+        width: 33%;
+    }
+}

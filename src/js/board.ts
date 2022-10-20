@@ -1,16 +1,8 @@
 class Box {
     value: boolean = null;
 
-    constructor() {
-
-    }
-
     setVal(val: boolean): void {
         this.value = val;
-    }
-
-    getVal() {
-        return this.value;
     }
 
     isEmpty(): boolean {
@@ -18,13 +10,13 @@ class Box {
     }
 }
 
-let board: { spaces: Box[], checkThreeInRow: (bool:boolean)=>boolean, cells: HTMLInputElement[], createSpaces: Function } = {
+let board: { spaces: Box[], checkThreeInRow: (bool: boolean) => boolean, cells: HTMLInputElement[], createSpaces: Function } = {
     spaces: [],
     cells: Array<HTMLInputElement>(9),
     checkThreeInRow: (bool: boolean) => {
         var binaryBoard: any = '0b';
         board.spaces.forEach((box) => {
-            binaryBoard = box.getVal() == bool ? binaryBoard += '1' : binaryBoard += '0';
+            binaryBoard = box.value == bool ? binaryBoard += '1' : binaryBoard += '0';
         });
 
         var winBoard = [
@@ -54,6 +46,5 @@ let board: { spaces: Box[], checkThreeInRow: (bool:boolean)=>boolean, cells: HTM
         }
     }
 }
-
 
 export { board, Box };

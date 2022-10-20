@@ -9,7 +9,7 @@ var table : {buckets:Move[], hashFunc, putValue} = {
         var boardValue = 0;
     
         for (var i = 0; i < 9; i++) {
-            var char =  board.spaces[i].getVal();
+            var char =  board.spaces[i].value;
             if (char == null)
                 boardValue += Math.pow(3,i) * 0;
             else if (char == true)

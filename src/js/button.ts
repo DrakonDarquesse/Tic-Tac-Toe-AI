@@ -33,21 +33,21 @@ const startBtn = () => {
 }
 
 const twoPlayerBtn = () => {
-    return new Button('twoPlayerBtn', 'Two Player', () => {
+    return new Button('twoPlayerBtn', '2 Player', () => {
         game.mode(false)
         startBtn().append()
     })
 }
 
 const aiFirstBtn = () => {
-    return new Button('aiFirstBtn', 'Single Player (AI first)', () => {
+    return new Button('aiFirstBtn', '1 Player ( AI first )', () => {
         game.mode(true)
         startBtn().append()
     })
 }
 
 const humanFirstBtn = () => {
-    return new Button('humanFirstBtn', 'Single Player (Human first)', () => {
+    return new Button('humanFirstBtn', '1 Player ( Human first )', () => {
         game.mode(true, false)
         startBtn().append()
     })
@@ -55,7 +55,6 @@ const humanFirstBtn = () => {
 
 const restartBtn = () => {
     return new Button('restartBtn', 'Play Again', () => {
-        document.getElementById('resultContainer').firstChild.remove()
         game.reset()
         aiFirstBtn().append()
         humanFirstBtn().append()
