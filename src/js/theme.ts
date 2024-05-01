@@ -1,21 +1,24 @@
 import { dark, light } from "./constants"
 
-function checkDarkTheme() {
-    const isUserSetDark = localStorage.getItem('theme') == dark
-    const isThemeDark = window.matchMedia("(prefers-color-scheme: dark)")?.matches
-    return isUserSetDark || isThemeDark
+const checkSetTheme = localStorage.getItem('theme')
+
+const checkDefaultTheme = window.matchMedia("(prefers-color-scheme: dark)")?.matches ? dark : light
+
+const themeInverse = (theme: string) => theme == light ? dark : light
+
+const setTheme = (theme: string, themeToggle: HTMLSpanElement) => {
+    document.documentElement.setAttribute("data-theme", theme)
+    themeToggle.textContent = themeInverse(theme)
 }
 
 export const setThemeOnLoad = (themeToggle: HTMLSpanElement) => {
-    const theme = checkDarkTheme() ? dark : light
-    document.documentElement.setAttribute("data-theme", theme)
-    themeToggle.textContent = theme
+    const theme = checkSetTheme ?? checkDefaultTheme
+    setTheme(theme, themeToggle)
 }
 
 export const switchTheme = (evt: Event) => {
     const themeToggle = evt.target as HTMLSpanElement
     const newTheme = themeToggle.textContent
     localStorage.setItem('theme', newTheme)
-    document.documentElement.setAttribute("data-theme", newTheme)
-    themeToggle.textContent = newTheme == dark ? light : dark
+    setTheme(newTheme, themeToggle)
 }

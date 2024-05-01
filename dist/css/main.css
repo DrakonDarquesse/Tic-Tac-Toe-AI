@@ -133,6 +133,7 @@ button {
     border-radius: 10px;
     min-width: fit-content;
     max-width: 360px;
+    max-height: 100px;
     flex: 1;
     text-transform: uppercase;
     font-weight: 500;
