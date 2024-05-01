@@ -3,13 +3,12 @@ import Move from "./move";
 import table from "./hash";
 import { game } from "./game";
 
-function GetGoodMove() {
-	var key;
+async function GetGoodMove() {
+	var key: number;
 	var goodMove:Move;
 
-	if (game.moves <= 4 && game.moves > 0) {
+	if (game.moves <= 4 && game.moves > 0) 
 		key = table.hashFunc()%table.buckets.length;
-	}
 
 	if (key > 0) {
 		if (table.buckets[key]) 

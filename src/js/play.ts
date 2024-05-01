@@ -1,10 +1,11 @@
 import { board } from "./board";
 import { restartBtn } from "./button";
+import { o, x } from "./constants";
 import { game } from "./game"
 import { GetGoodMove } from "./minimax";
 
 const putText = (i: number) => {
-    board.cells[i].value = game.playerBool ? 'O' : 'X';
+    board.cells[i].value = game.playerBool ? o : x;
     play(i)
 }
 
@@ -16,7 +17,6 @@ const play = async (index: number) => {
         unbindInterface()
         return
     }
-    console.log(`index: ${index}, move: ${game.moves}, ${game.playerBool}`)
     game.moves++;
     game.switchPlayer()
 
@@ -27,13 +27,13 @@ const play = async (index: number) => {
 }
 
 const aiPlay = async () => {
-    const index: number = await GetGoodMove().boxIndex
+    const index: number = (await GetGoodMove()).boxIndex
     board.spaces[index].setVal(game.playerBool);
     board.cells[index].click()
 }
 
 const resultGenerator = (result:boolean) => {
-    const resultText = result? (game.playerBool ? 'O WINS' : 'X WINS') : 'DRAW'
+    const resultText = result? (game.playerBool ? o : x)  + ' WINS' : 'DRAW'
     const resultElement = document.createElement('h1') 
     resultElement.innerText = resultText
     document.getElementById('buttonContainer').append(resultElement);
