@@ -1,33 +1,38 @@
 import { game } from "./game"
 import { bindInterface, aiPlay } from "./play";
 
+const animationKeyFrame = [{ opacity: 1}, { opacity: 0 }, { padding: 0, maxHeight: 0, opacity: 0 }]
+
 class Button {
     button: HTMLButtonElement = document.createElement('button');
     constructor(id: string, text: string, event: () => void) {
         this.button.id = id
         this.button.innerText = text
-        this.button.addEventListener('click', () => {
-            this.remove()
+        this.button.addEventListener('click', async () => {
+            await this.remove()
             event()
         })
     }
 
-    remove() {
+    async remove() {
         const div = document.getElementById('buttonContainer')
-        while (div.hasChildNodes()) {
-            div.removeChild(div.firstChild);
-        }
+        const animation = ([...(div.children)] as HTMLElement[]).map(async element => {
+            return await element.animate(animationKeyFrame, 300).finished
+                .then(() => element.remove())
+        })
+        await Promise.all(animation)
     }
 
-    append() {
+    append() {        
         document.getElementById('buttonContainer').append(this.button)
+        this.button.animate([...animationKeyFrame].reverse(), 300)
     }
 }
 
 const startBtn = () => {
     return new Button('playBtn', 'Start', () => {
         bindInterface()
-        game.moves++;    
+        game.moves++;
         if (game.ai && game.playerBool) aiPlay()
     })
 }
